@@ -11,9 +11,24 @@ export class StarterContentComponent implements OnInit {
 
   constructor() { }
 
+  messageModule = false;
+  imgModule =false;
+
   ngOnInit() {
     // Update the AdminLTE layouts
-    AdminLTE.init();
+   // AdminLTE.init();
+  }
+
+  selectedSection(item:any){
+    if(item == "message"){
+      this.messageModule = true;
+      this.imgModule = false;
+    }
+    if(item == "image"){
+      this.imgModule = true;
+      this.messageModule = false;
+
+    } 
   }
 
 }

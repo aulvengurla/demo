@@ -24,31 +24,14 @@
           <ul class="nav navbar-nav" >
             
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <a   class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Item-1</a></li>
-                <li><a href="#">Item-2</a></li>
-                <li><a href="#">Item-3</a></li> 
+                <li><a href="javacript:void(0);" (click)="selectedSection('message')">Message</a></li>
+                <li><a href="javacript:void(0);" (click)="selectedSection('image')">Image</a></li>
+                
               </ul>
             </li>
-            
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Item-1</a></li>
-                  <li><a href="#">Item-2</a></li>
-                  <li><a href="#">Item-3</a></li> 
-              </ul>
-            </li>
-            
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Item-1</a></li>
-                  <li><a href="#">Item-2</a></li>
-                  <li><a href="#">Item-3</a></li> 
-              </ul>
-            </li>
+           
           </ul> 
            
         </div><!-- /.navbar-collapse -->
@@ -59,7 +42,7 @@
 
 <br/>
 
-    <div class="box box-success">
+    <div class="box box-success" *ngIf="messageModule">
         <div class="box-header with-border">
             <h3 class="box-title">Message Details</h3>
   
@@ -179,7 +162,7 @@
 
 
 
-    <div class="box box-success">
+    <div class="box box-success" *ngIf="imgModule"> 
         <div class="box-header with-border">
             <h3 class="box-title">Images Details</h3>
   
