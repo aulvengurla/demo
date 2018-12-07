@@ -67,19 +67,27 @@
         
           <div class="row">
               <div class="col-xs-12">
-                <div class="box box-success">
+                
                   <div class="box-header">
                     <h3 class="box-title">   
 
-                        <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Enter Message">
-                                <span class="input-group-btn">
-                                  <button type="button" class="btn btn-info btn-flat">Submit</button>
-                                </span>
-                          </div>
+                      <div class="col-md-6">
+                          <div class="input-group input-group-sm">
+                              <input type="text" class="form-control" placeholder="Enter Message">
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat">Add</button>
+                                  </span> 
+
+                                  <span class="input-group-btn" style="padding-left:5px;">
+                                      <button type="button" class="btn btn-info btn-flat">Clear</button>
+                                   </span> 
+                                  
+                            </div>
+                      </div>
+                        
 
                       </h3>  
-                  </div>
+                  
                   <!-- /.box-header -->
                   <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
@@ -87,30 +95,36 @@
                         <th>ID</th>
                         <th>Message</th> 
                         <th>Status</th> 
+                        <th>Option</th> 
                       </tr>
                       <tr>
                         <td>183</td> 
                         <td>Message-1.</td>
-                        <td><span class="label label-success">Y</span></td> 
+                        <td>  <label> <input type="checkbox"> </label> </td> 
+                        <td>  <button type="submit" class="btn btn-danger">Delete</button> </td> 
                       </tr><tr>
                           <td>183</td> 
                           <td>Message-1.</td>
-                          <td><span class="label label-danger">N</span></td> 
+                          <td>  <label> <input type="checkbox"> </label> </td>
+                          <td>  <button type="submit" class="btn btn-danger">Delete</button> </td>  
                         </tr>
                         <tr>
                             <td>183</td> 
                             <td>Message-1.</td>
-                            <td><span class="label label-success">Y</span></td> 
+                            <td>  <label> <input type="checkbox"> </label> </td> 
+                            <td>  <button type="submit" class="btn btn-danger">Delete</button> </td> 
                           </tr>
                           <tr>
                               <td>183</td> 
                               <td>Message-1.</td>
-                              <td><span class="label label-danger">N</span></td> 
+                              <td>  <label> <input type="checkbox"> </label> </td> 
+                              <td>  <button type="submit" class="btn btn-danger">Delete</button> </td> 
                             </tr>
                             <tr>
                                 <td>183</td> 
                                 <td>Message-1.</td>
-                                <td><span class="label label-success">Y</span></td> 
+                                <td>  <label> <input type="checkbox"> </label> </td> 
+                                <td>  <button type="submit" class="btn btn-danger">Delete</button> </td> 
                               </tr>     
                     </tbody></table>
                   </div>
