@@ -30,7 +30,8 @@ export class StarterContentComponent implements OnInit {
   }
 
   
-  saveMessage(data:any){
+  updateMessage(data:any){ 
+ 
      console.log(data);
      this.messageService.updateMessage(data).subscribe((result) => {        
       console.log(result);
@@ -55,6 +56,26 @@ export class StarterContentComponent implements OnInit {
       this.imgModule = true;
       this.messageModule = false; 
     } 
+  }
+
+
+  getStatus(data:any){ 
+
+      if(data.displayMsg == "N"){ 
+          return false;
+      } else{
+        return true;
+      }
+      
+  }
+
+  getStatusChk(ev,data){ 
+    if(ev.target.checked){
+      data.displayMsg = "Y";
+    }else{
+      data.displayMsg = "N";
+    }
+    
   }
 
 }

@@ -101,8 +101,8 @@
                             <textarea class="form-control" rows="2" placeholder="Enter ..." 
                             [(ngModel)]="data.msg">{{data.msg}}</textarea>
                         </td>
-                        <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [(ngModel)]="data.displayMsg"> </label></td> 
-                        <td>  <button type="submit" class="btn btn-success" (click)="saveMessage(data)">Save</button> | 
+                        <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [checked]="getStatus(data)"   (click)="getStatusChk($event,data)"> </label></td> 
+                        <td>  <button type="submit" class="btn btn-success" (click)="updateMessage(data)">Save</button> | 
                           <button type="submit" class="btn btn-danger" (click)="deleteMessage(data)">Delete</button>
                         </td>
                       </tr>                                    
