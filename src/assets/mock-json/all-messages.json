@@ -1,0 +1,17 @@
+[
+    {
+        "msgID":1,
+        "msg":"Message-1",
+        "displayMsg": false
+    },
+    {
+        "msgID":2,
+        "msg":"Message-2",
+        "displayMsg": true
+    },
+    {
+        "msgID":3,
+        "msg":"Message-3",
+        "displayMsg": false
+    }
+]

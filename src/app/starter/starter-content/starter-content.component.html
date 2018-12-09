@@ -91,41 +91,21 @@
                   <!-- /.box-header -->
                   <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
-                      <tbody><tr>
-                        <th>ID</th>
+                      <tbody><tr> 
                         <th>Message</th> 
                         <th>Status</th> 
                         <th>Option</th> 
                       </tr>
-                      <tr>
-                        <td>183</td> 
-                        <td>Message-1.</td>
-                        <td>  <label> <input type="checkbox"> </label> </td> 
-                        <td>  <button type="submit" class="btn btn-danger">Delete</button> </td> 
-                      </tr><tr>
-                          <td>183</td> 
-                          <td>Message-1.</td>
-                          <td>  <label> <input type="checkbox"> </label> </td>
-                          <td>  <button type="submit" class="btn btn-danger">Delete</button> </td>  
-                        </tr>
-                        <tr>
-                            <td>183</td> 
-                            <td>Message-1.</td>
-                            <td>  <label> <input type="checkbox"> </label> </td> 
-                            <td>  <button type="submit" class="btn btn-danger">Delete</button> </td> 
-                          </tr>
-                          <tr>
-                              <td>183</td> 
-                              <td>Message-1.</td>
-                              <td>  <label> <input type="checkbox"> </label> </td> 
-                              <td>  <button type="submit" class="btn btn-danger">Delete</button> </td> 
-                            </tr>
-                            <tr>
-                                <td>183</td> 
-                                <td>Message-1.</td>
-                                <td>  <label> <input type="checkbox"> </label> </td> 
-                                <td>  <button type="submit" class="btn btn-danger">Delete</button> </td> 
-                              </tr>     
+                      <tr *ngFor="let data Of messageList"> 
+                        <td>
+                            <textarea class="form-control" rows="2" placeholder="Enter ..." 
+                            [(ngModel)]="data.msg">{{data.msg}}</textarea>
+                        </td>
+                        <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [(ngModel)]="data.displayMsg"> </label></td> 
+                        <td>  <button type="submit" class="btn btn-success" (click)="saveMessage(data)">Save</button> | 
+                          <button type="submit" class="btn btn-danger" (click)="deleteMessage(data)">Delete</button>
+                        </td>
+                      </tr>                                    
                     </tbody></table>
                   </div>
                   <!-- /.box-body -->
@@ -136,18 +116,8 @@
       </div>
       <!-- /.box-body -->
       
-    </div>
-
-
-
-
-    
-
-
-
-
-
-    <div class="box box-success" *ngIf="imgModule"> 
+    </div> 
+     <div class="box box-success" *ngIf="imgModule"> 
         <div class="box-header with-border">
             <h3 class="box-title">Images Details</h3>
 
