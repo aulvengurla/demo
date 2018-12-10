@@ -11,8 +11,7 @@ export class MessageService {
 
  constructor(public http: Http) { }
 
-   public getAllMessage(): Observable<any> { 
-      //http://wallboardservices.corp.tcf.biz/Wallboard/Message/All
+   public getAllMessage(): Observable<any> {  
 
       let url = 'assets/mock-json/all-messages.json';
       return this.http.get(url)
