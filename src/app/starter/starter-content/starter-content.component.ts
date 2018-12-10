@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener  } from '@angular/core';
 import { MessageService } from '../../services/message.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-starter-content',
@@ -16,11 +17,32 @@ export class StarterContentComponent implements OnInit {
   errorMsg:string;
   messageList:any;
   msgdata:boolean =true;
-
+  originalVal:string='';
+  msgInputId:any;
+  inputString = "ipt_";
   ngOnInit() { 
       this.getAllMessage(); 
   }
 
+  getOrignalVal(data:any,id){ 
+     this.originalVal = data;
+     this.msgInputId = id;
+  }
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+       alert("Esc"+this.originalVal+"   "+'ipt_'+this.msgInputId);  
+       document.getElementById('ipt_'+this.msgInputId).innerHTML  = this.originalVal;
+        
+    }
+  }
+
+  lenghtValidate(data:any){ 
+    if(data.length >=75){
+      alert("Message Should Not Be More Than 75 Characters.");
+      return false;
+    }
+    return true;
+  }
 
   getAllMessage(){
     this.messageService.getAllMessage().subscribe((messageList) => { 
