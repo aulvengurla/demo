@@ -20,19 +20,19 @@ export class StarterContentComponent implements OnInit {
   originalVal:string='';
   msgInputId:any;
   inputString = "ipt_";
+  updateMsg : any;
   ngOnInit() { 
       this.getAllMessage(); 
   }
 
-  getOrignalVal(data:any,id){ 
+  getOrignalVal(data:any,id,i){ 
      this.originalVal = data;
      this.msgInputId = id;
+     this.updateMsg = i;
   }
   @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-    if (event.key === "Escape") {
-       alert("Esc"+this.originalVal+"   "+'ipt_'+this.msgInputId);  
-       document.getElementById('ipt_'+this.msgInputId).innerHTML  = this.originalVal;
-        
+    if (event.key === "Escape") {  
+      this.messageList[this.updateMsg].msg = this.originalVal;
     }
   }
 
