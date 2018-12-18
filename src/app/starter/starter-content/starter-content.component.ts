@@ -21,6 +21,8 @@ export class StarterContentComponent implements OnInit {
   msgInputId:any;
   inputString = "ipt_";
   updateMsg : any;
+  display='none';
+
   ngOnInit() { 
       this.getAllMessage(); 
   }
@@ -62,6 +64,7 @@ export class StarterContentComponent implements OnInit {
   }
 
   persistMsgTmp(data:any){
+    this.display='block'; 
     console.log(data);
     window.localStorage.setItem("dataForDelete",JSON.stringify(data));
   }
@@ -70,13 +73,17 @@ export class StarterContentComponent implements OnInit {
     window.localStorage.removeItem("dataForDelete");
   }
 
-  deleteMessage(){
+  deleteMessage(){ 
+
     let data = JSON.parse(window.localStorage.getItem("dataForDelete"));
     this.messageService.deleteMessage(data).subscribe((result) => {        
       console.log(result);
       this.getAllMessage();
-      this.removeDeleteData();
+      this.removeDeleteData(); 
     }, err  => this.errorMsg = <any>err);
+
+    this.display='none'; 
+    
   }
 
   selectedSection(item:any){
