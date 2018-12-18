@@ -63,7 +63,7 @@ export class StarterContentComponent implements OnInit {
 
   persistMsgTmp(data:any){
     console.log(data);
-    window.localStorage.setItem("dataForDelete",data);
+    window.localStorage.setItem("dataForDelete",JSON.stringify(data));
   }
 
   removeDeleteData(){
@@ -71,7 +71,7 @@ export class StarterContentComponent implements OnInit {
   }
 
   deleteMessage(){
-    let data = window.localStorage.getItem("dataForDelete");
+    let data = JSON.parse(window.localStorage.getItem("dataForDelete"));
     this.messageService.deleteMessage(data).subscribe((result) => {        
       console.log(result);
       this.getAllMessage();
