@@ -39,6 +39,7 @@ export class StarterContentComponent implements OnInit {
   }
 
   lenghtValidate(data:any){ 
+    console.log(data.length);
     if(data.length >=75){
       alert("Message Should Not Be More Than 75 Characters.");
       return false;
@@ -71,6 +72,7 @@ export class StarterContentComponent implements OnInit {
 
   removeDeleteData(){
     window.localStorage.removeItem("dataForDelete");
+    this.display='none'; 
   }
 
   deleteMessage(){ 

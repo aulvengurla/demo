@@ -99,7 +99,7 @@
                       <tr *ngFor="let data Of messageList;let i = index;"> 
                         <td>
                             <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" rows="2" placeholder="Enter ..." 
-                            [(ngModel)]="data.msg"   (click)="getOrignalVal(data.msg,data.msgID,i)" (keydown)="lenghtValidate(data.msg)">{{data.msg}}</textarea>
+                            [(ngModel)]="data.msg"   (click)="getOrignalVal(data.msg,data.msgID,i)" maxlength="75"  (keypress)="lenghtValidate(data.msg)">{{data.msg}}</textarea>
                          
                         </td>
                         <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [checked]="getStatus(data)"   (click)="getStatusChk($event,data)"> </label></td> 
