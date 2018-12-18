@@ -61,11 +61,21 @@ export class StarterContentComponent implements OnInit {
     }, err  => this.errorMsg = <any>err); 
   }
 
-  deleteMessage(data:any){
+  persistMsgTmp(data:any){
     console.log(data);
+    window.localStorage.setItem("dataForDelete",data);
+  }
+
+  removeDeleteData(){
+    window.localStorage.removeItem("dataForDelete");
+  }
+
+  deleteMessage(){
+    let data = window.localStorage.getItem("dataForDelete");
     this.messageService.deleteMessage(data).subscribe((result) => {        
       console.log(result);
       this.getAllMessage();
+      this.removeDeleteData();
     }, err  => this.errorMsg = <any>err);
   }
 

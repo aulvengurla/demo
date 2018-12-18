@@ -58,7 +58,7 @@
   
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+              <button type="button" class="btn btn-box-tool"  data-widget="remove"><i class="fa fa-remove"></i></button> 
             </div>
           </div>
       <!-- /.box-header -->
@@ -103,8 +103,8 @@
                          
                         </td>
                         <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [checked]="getStatus(data)"   (click)="getStatusChk($event,data)"> </label></td> 
-                        <td>  <button type="submit" class="btn btn-success" (click)="updateMessage(data)">Save</button> | 
-                          <button type="submit" class="btn btn-danger" (click)="deleteMessage(data)">Delete</button>
+                        <td>  <button  class="btn btn-success" (click)="updateMessage(data)">Save</button> | 
+                          <button  class="btn btn-danger"  data-toggle="modal" data-target="#modal-default"  (click)="persistMsgTmp(data)" >Delete</button> 
                         </td>
                       </tr>                                    
                     </tbody></table>
@@ -118,6 +118,31 @@
       <!-- /.box-body -->
       
     </div> 
+
+
+    <div class="modal fade" id="modal-default">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body">
+            <p>Are You Sure?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" (click)="removeDeleteData()">Cancel</button>
+            <button type="button" class="btn btn-primary"  (click)="deleteMessage()" >Submit</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
      <div class="box box-success" *ngIf="imgModule"> 
         <div class="box-header with-border">
             <h3 class="box-title">Images Details</h3>
