@@ -36,14 +36,19 @@ export class StarterContentComponent implements OnInit {
     }
   }
 
-  lenghtValidate(data:any){ 
+  lenghtValidate(data:any,i){ 
+    alert(data+"   "+i);
+    console.log(this.messageList);
     if(data.length >=75){
       alert("Message Should Not Be More Than 75 Characters.");
       return false;
     }
+    if(data != this.messageList[i].msg){
+        
+    }
     return true;
   }
-
+ 
   getAllMessage(){
     this.messageService.getAllMessage().subscribe((messageList) => { 
       this.messageList = messageList;

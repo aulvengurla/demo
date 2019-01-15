@@ -99,13 +99,18 @@
                       <tr *ngFor="let data Of messageList;let i = index;"> 
                         <td>
                             <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" rows="2" placeholder="Enter ..." 
-                            [(ngModel)]="data.msg"   (click)="getOrignalVal(data.msg,data.msgID,i)" (keydown)="lenghtValidate(data.msg)">{{data.msg}}</textarea>
+                            [(ngModel)]="data.msg"   (click)="getOrignalVal(data.msg,data.msgID,i)" (keydown)="lenghtValidate(data.msg,i)"  >{{data.msg}}</textarea>
                          
                         </td>
                         <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [checked]="getStatus(data)"   (click)="getStatusChk($event,data)"> </label></td> 
-                        <td>  <button type="submit" class="btn btn-success" (click)="updateMessage(data)">Save</button> | 
+                        <td> 
+                           <button type="submit" id="btn_{{data.msgID}}" class="btn btn-success  " [ngStyle]="{disabled : msgdata}" (click)="updateMessage(data)">Save</button> | 
                           <button type="submit" class="btn btn-danger" (click)="deleteMessage(data)">Delete</button>
                         </td>
+                        <td> 
+                          <span style="color: green;" id="save_{{data.msgID}}">Successfully saved</span>
+                          <span style="color: red;" id="error_{{data.msgID}}">Unsuccessful</span>
+                         </td>
                       </tr>                                    
                     </tbody></table>
                   </div>
