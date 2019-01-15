@@ -35,7 +35,7 @@ export class MessageService {
    }
  
     public deleteMessage(data:any): Observable<any> { 
-         
+         console.log(data.msgID);
               let url = '';
               return this.http.delete(url,data)
                   .map((response: Response) => {

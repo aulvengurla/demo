@@ -21,6 +21,8 @@ export class StarterContentComponent implements OnInit {
   msgInputId:any;
   inputString = "ipt_";
   updateMsg : any;
+  display='none';
+
   ngOnInit() { 
       this.getAllMessage(); 
   }
@@ -36,16 +38,13 @@ export class StarterContentComponent implements OnInit {
     }
   }
 
-  lenghtValidate(data:any,i){ 
-    alert(data+"   "+i);
-    console.log(this.messageList);
+  lenghtValidate(data:any){ 
+    console.log(data.length);
     if(data.length >=75){
       alert("Message Should Not Be More Than 75 Characters.");
       return false;
     }
-    if(data != this.messageList[i].msg){
-        
-    }
+    
     return true;
   }
  
@@ -66,12 +65,28 @@ export class StarterContentComponent implements OnInit {
     }, err  => this.errorMsg = <any>err); 
   }
 
-  deleteMessage(data:any){
+  persistMsgTmp(data:any){
+    this.display='block'; 
     console.log(data);
+    window.localStorage.setItem("dataForDelete",JSON.stringify(data));
+  }
+
+  removeDeleteData(){
+    window.localStorage.removeItem("dataForDelete");
+    this.display='none'; 
+  }
+
+  deleteMessage(){ 
+
+    let data = JSON.parse(window.localStorage.getItem("dataForDelete"));
     this.messageService.deleteMessage(data).subscribe((result) => {        
       console.log(result);
       this.getAllMessage();
+      this.removeDeleteData(); 
     }, err  => this.errorMsg = <any>err);
+
+    this.display='none'; 
+    
   }
 
   selectedSection(item:any){

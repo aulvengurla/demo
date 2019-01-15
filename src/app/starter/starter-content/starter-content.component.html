@@ -58,7 +58,7 @@
   
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+              <button type="button" class="btn btn-box-tool"  data-widget="remove"><i class="fa fa-remove"></i></button> 
             </div>
           </div>
       <!-- /.box-header -->
@@ -99,6 +99,7 @@
                       <tr *ngFor="let data Of messageList;let i = index;"> 
                         <td>
                             <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" rows="2" placeholder="Enter ..." 
+<<<<<<< HEAD
                             [(ngModel)]="data.msg"   (click)="getOrignalVal(data.msg,data.msgID,i)" (keydown)="lenghtValidate(data.msg,i)"  >{{data.msg}}</textarea>
                          
                         </td>
@@ -106,6 +107,14 @@
                         <td> 
                            <button type="submit" id="btn_{{data.msgID}}" class="btn btn-success  " [ngStyle]="{disabled : msgdata}" (click)="updateMessage(data)">Save</button> | 
                           <button type="submit" class="btn btn-danger" (click)="deleteMessage(data)">Delete</button>
+=======
+                            [(ngModel)]="data.msg"   (click)="getOrignalVal(data.msg,data.msgID,i)" maxlength="75"  (keypress)="lenghtValidate(data.msg)">{{data.msg}}</textarea>
+                         
+                        </td>
+                        <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [checked]="getStatus(data)"   (click)="getStatusChk($event,data)"> </label></td> 
+                        <td>  <button  class="btn btn-success" (click)="updateMessage(data)">Save</button> | 
+                          <button  class="btn btn-danger"  data-toggle="modal"    (click)="persistMsgTmp(data)" >Delete</button> 
+>>>>>>> c5f195619fc8aaa980e25ec37a7ba3380be27c67
                         </td>
                         <td> 
                           <span style="color: green;" id="save_{{data.msgID}}">Successfully saved</span>
@@ -123,6 +132,29 @@
       <!-- /.box-body -->
       
     </div> 
+
+
+    <div class="modal" [ngStyle]="{'display':display}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header"> 
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body">
+            <p>Are You Sure?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" (click)="removeDeleteData()">Cancel</button>
+            <button type="button" class="btn btn-primary"  (click)="deleteMessage()" >Submit</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
      <div class="box box-success" *ngIf="imgModule"> 
         <div class="box-header with-border">
             <h3 class="box-title">Images Details</h3>
