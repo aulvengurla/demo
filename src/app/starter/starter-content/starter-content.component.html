@@ -1,228 +1,224 @@
 <div class="content-wrapper" style="margin-left: 0px;">
   <!-- Content Header (Page header) -->
 
-  <div class="text-center" style="padding:7px; background: rgb(243, 156, 18); z-index: 999999; font-size: 16px; font-weight: 600;"> 
-    Message 
+  <div class="text-center" style="padding:7px; background: rgb(243, 156, 18); z-index: 999999; font-size: 16px; font-weight: 600;">
+    <span>
+      <h2> <b> Contact Center Administration </b> </h2>
+    </span>
   </div>
-
-  
-
   <!-- Main content -->
   <section class="content">
- 
+
     <header class="main-header">
       <nav class="navbar navbar-static-top" style="margin-left: 0px;">
         <div class="container-fluid">
-        
-            <div class="navbar-header"> 
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                  <i class="fa fa-bars"></i>
-                </button>
-              </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-          <ul class="nav navbar-nav" >
-            
-            <li class="dropdown">
-              <a   class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>  
-              <ul class="dropdown-menu" style="min-width: 200px; border: 1px solid burlywood;"> 
-                <li class="user-body">
-                  <div class="row">
-                    <div class="col-xs-6 text-center"> 
-                      <a href="javacript:void(0);" (click)="selectedSection('message')">
-                        <i class="fa fa-envelope"></i> <span>Message</span></a> 
-                    </div> 
-                     <div class="col-xs-6 text-center"> 
-                        <a href="javacript:void(0);" (click)="selectedSection('image')">
-                          <i class="fa  fa-file-image-o"></i> <span>Image</span></a> 
+
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Wallboard Administration <span class="caret"></span></a>
+                <ul class="dropdown-menu" style="min-width: 200px; border: 1px solid burlywood;">
+                  <li class="user-body">
+                    <div class="row">
+                      <div class="col-xs-6 text-center">
+                        <a href="javacript:void(0);" (click)="selectedSection('message'); txtbtn=true;">
+                          <i class="fa fa-envelope"></i> <span>Message</span></a>
                       </div>
-                  </div> 
-                  
-                </li> 
-              </ul> 
-            </li>   
-
-
-           </ul>  
+                      <div class="col-xs-6 text-center">
+                        <a href="javacript:void(0);" (click)="selectedSection('image')">
+                          <i class="fa  fa-file-image-o"></i> <span>Image</span></a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-    </header>  
-
-
-<br/>
-
+    </header>
+    <br />
     <div class="box box-success" *ngIf="messageModule">
-        <div class="box-header with-border">
-            <h3 class="box-title">Message Details</h3>
-  
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button type="button" class="btn btn-box-tool"  data-widget="remove"><i class="fa fa-remove"></i></button> 
-            </div>
-          </div>
+      <div class="box-header with-border">
+        <h3 class="box-title"><b>Alert Message Maintenance </b></h3>
+        <!--<div class="box box-success"></div>-->
+        <span class="box box-success"></span>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+        </div>
+      </div>
       <!-- /.box-header -->
       <div class="box-body">
-       
-        
-          <div class="row">
-              <div class="col-xs-12">
-                
-                  <div class="box-header">
-                    <h3 class="box-title">   
-
-                      <div class="col-md-6">
-                          <div class="input-group input-group-sm">
-                              <input type="text" class="form-control" placeholder="Enter Message">
-                                  <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat">Add</button>
-                                  </span> 
-
-                                  <span class="input-group-btn" style="padding-left:5px;">
-                                      <button type="button" class="btn btn-info btn-flat">Clear</button>
-                                   </span> 
-                                  
-                            </div>
-                      </div>
-                        
-
-                      </h3>  
-                  
-                  <!-- /.box-header -->
-                  <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
-                      <tbody><tr> 
-                        <th>Message</th> 
-                        <th>Status</th> 
-                        <th>Option</th> 
-                      </tr>
-                      <tr *ngFor="let data Of messageList;let i = index;"> 
+        <div class="box box-success">
+          <span class="box-tools pull-left">
+            <button class="btn btn-primary" (click)="showAddEdit=true; txtbtn=true">Add</button>
+            <button class="btn btn-primary" (click)="showAddEdit=false; txtbtn=false">Edit</button>
+          </span>
+        </div>
+        <!-- End of Add/Edit -->
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box-header">
+              <!-- /.box-header -->
+              <div class="box-body table-responsive no-padding">
+                <table *ngIf="showAddEdit == true || showAddEdit == false" class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <th>Message - 70 character limit</th>
+                      <th style="padding-left: 4%">Active</th>
+                      <th style="padding-left: 3%">Option</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <form #newmsgForm="ngForm" (ngSubmit)="addMessage(newmsgForm)">
+                  <table *ngIf="showAddEdit == true" class="table table-hover">
+                    <tbody>
+                      <tr>
                         <td>
-                            <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" rows="2" placeholder="Enter ..." 
-                            [(ngModel)]="data.msg" maxlength="75"  (keyup)="lenghtValidate(data.msg)" >{{data.msg}}</textarea>                         
+                          <input class="form-control" name="inewmsg" type="text" [(ngModel)]="inputfield" placeholder="Enter Message"
+                            maxlength="70" required>
                         </td>
-                        <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [checked]="getStatus(data)"   (click)="getStatusChk($event,data)"> </label></td> 
-                        <td>  <button  class="btn btn-success" (click)="updateMessage(data,i)"   >Save</button> | 
-                          <button  class="btn btn-danger"  data-toggle="modal"    (click)="persistMsgTmp(data)" >Delete</button> 
+                        <td><input type="checkbox" name="setnewmsg" [(ngModel)]="displayMsgFlag"></td>
+                        <td> <button type="submit" class="btn btn-success" >Save</button>
+                          <button type="button" class="btn btn-danger" (click)="inputfield=''">Clear</button>
                         </td>
-                        <td> 
-                          <span style="color: yellow;" id="info_{{data.msgID}}" style="display:none;" >Massge must have at least one character</span>
-                          <span style="color: green;" id="save_{{data.msgID}}" style="display:none;">Successfully saved</span>
-                          <span style="color: red;" id="error_{{data.msgID}}" style="display:none;" >Save Unsuccessful</span>
-                         </td>
-                      </tr>                                    
-                    </tbody></table>
-                  </div>
-                  <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+                <table class="table table-hover">
+                  <tbody>
+                    
+                    <tr *ngFor="let data Of messageList;let i = index;">
+                      <td>
+                        <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" placeholder="Enter ..."
+                          [(ngModel)]="data.msg" (click)="getOrignalVal(data.msg,data.msgID,i)" maxlength="70"
+                          [readonly]="txtbtn">{{data.msg}} </textarea>
+                      </td>
+                      <td style="padding-left: 5%"> <label> <input *ngIf="showAddEdit == false" type="checkbox" name="chk"
+                            id="chk_{{data.msgID}}" [checked]="getStatus(data)" (click)="getStatusChk($event,data)">
+                        </label></td>
+                      <td> <button *ngIf="showAddEdit == false" type="submit" class="btn btn-success" (click)="updateMessage(data,i)" >Save</button>
+                        <button *ngIf="showAddEdit == false" type="submit" class="btn btn-danger" (click)="deleteMessage(data)">Delete</button>
+                      </td>
+                      <td> 
+                        <span style="color: yellow;" id="info_{{data.msgID}}" style="display:none;" >Massge must have at least one character</span>
+                        <span style="color: green;" id="save_{{data.msgID}}" style="display:none;">Successfully saved</span>
+                        <span style="color: red;" id="error_{{data.msgID}}" style="display:none;" >Save Unsuccessful</span>
+                       </td>
+                    </tr>
+                  <!--
+
+                  <tr *ngFor="let data Of messageList;let i = index;"> 
+                      <td>
+                          <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" rows="2" placeholder="Enter ..." 
+                          [(ngModel)]="data.msg" maxlength="70"  (keyup)="lenghtValidate(data.msg)" >{{data.msg}}</textarea>                         
+                      </td>
+                      <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [checked]="getStatus(data)"   (click)="getStatusChk($event,data)"> </label></td> 
+                      <td>  <button  class="btn btn-success" (click)="updateMessage(data,i)"   >Save</button> | 
+                        <button  class="btn btn-danger"  data-toggle="modal"    (click)="persistMsgTmp(data)" >Delete</button> 
+                      </td>
+                      <td> 
+                        <span style="color: yellow;" id="info_{{data.msgID}}" style="display:none;" >Massge must have at least one character</span>
+                        <span style="color: green;" id="save_{{data.msgID}}" style="display:none;">Successfully saved</span>
+                        <span style="color: red;" id="error_{{data.msgID}}" style="display:none;" >Save Unsuccessful</span>
+                       </td>
+                    </tr>
+                  -->     
+                  </tbody>
+                </table>
               </div>
-            </div>  
-      </div>
-      <!-- /.box-body -->
-      
-    </div> 
-
-
-    <div class="modal" [ngStyle]="{'display':display}">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header"> 
-            <h4 class="modal-title"></h4>
-          </div>
-          <div class="modal-body">
-            <p>Are You Sure?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" (click)="removeDeleteData()">Cancel</button>
-            <button type="button" class="btn btn-primary"  (click)="deleteMessage()" >Submit</button>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
           </div>
         </div>
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
-
-     <div class="box box-success" *ngIf="imgModule"> 
-        <div class="box-header with-border">
-            <h3 class="box-title">Images Details</h3>
-
-            
-  
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-            </div>
-          </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-          <div class="row">
-              <div class="col-xs-12">
-                <div class="box box-primary">
-                  <div class="box-header">
-                      <h3 class="box-title">  
-                          <input type="file" id="inputFile"  > 
-                      </h3>  
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
-                      <tbody><tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Start Date</th>
-                        <th>Start Date</th> 
-                        <th>Image</th> 
-                        <th>Option</th> 
-                      </tr>
-                      <tr>
-                        <td>183</td>
-                        <td>John Doe</td>
-                        <td>11-7-2014</td>
-                        <td>11-7-2014</td> 
-                        <td><img src="../../../assets/img/avatar2.png" width="45px"/></td> 
-                        <td><a href="javascript:void(0);">Edit</a></td> 
-                      </tr>
-                      <tr>
-                        <td>219</td>
-                        <td>Alexander Pierce</td>
-                        <td>11-7-2014</td>
-                        <td>11-7-2014</td> 
-                        <td><img src="../../../assets/img/avatar3.png" width="45px"/></td> 
-                        <td><a href="javascript:void(0);">Edit</a></td> 
-                      </tr>
-                      <tr>
-                        <td>657</td>
-                        <td>Bob Doe</td>
-                        <td>11-7-2014</td>
-                        <td>11-7-2014</td> 
-                        <td><img src="../../../assets/img/avatar5.png" width="45px"/></td>
-                        <td><a href="javascript:void(0);">Edit</a></td>  
-                      </tr>
-                      <tr>
-                        <td>175</td>
-                        <td>Mike Doe</td>
-                        <td>11-7-2014</td>
-                        <td>11-7-2014</td> 
-                        <td><img src="../../../assets/img/avatar.png" width="45px"/></td> 
-                        <td><a href="javascript:void(0);">Edit</a></td> 
-                      </tr>
-                    </tbody></table>
-                  </div>
-                  <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-              </div>
-            </div>
       </div>
       <!-- /.box-body -->
-      
+
+
     </div>
-
-
-
+    <div class="box box-success" *ngIf="imgModule">
+      <div class="box-header with-border">
+        <h3 class="box-title">Images Details</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box box-primary">
+              <div class="box-header">
+                <h3 class="box-title">
+                  <input type="file" id="inputFile">
+                </h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <th>ID</th>
+                      <th>User</th>
+                      <th>Start Date</th>
+                      <th>Start Date</th>
+                      <th>Image</th>
+                      <th>Option</th>
+                    </tr>
+                    <tr>
+                      <td>183</td>
+                      <td>John Doe</td>
+                      <td>11-7-2014</td>
+                      <td>11-7-2014</td>
+                      <td><img src="../../../assets/img/avatar2.png" width="45px" /></td>
+                      <td><a href="javascript:void(0);">Edit</a></td>
+                    </tr>
+                    <tr>
+                      <td>219</td>
+                      <td>Alexander Pierce</td>
+                      <td>11-7-2014</td>
+                      <td>11-7-2014</td>
+                      <td><img src="../../../assets/img/avatar3.png" width="45px" /></td>
+                      <td><a href="javascript:void(0);">Edit</a></td>
+                    </tr>
+                    <tr>
+                      <td>657</td>
+                      <td>Bob Doe</td>
+                      <td>11-7-2014</td>
+                      <td>11-7-2014</td>
+                      <td><img src="../../../assets/img/avatar5.png" width="45px" /></td>
+                      <td><a href="javascript:void(0);">Edit</a></td>
+                    </tr>
+                    <tr>
+                      <td>175</td>
+                      <td>Mike Doe</td>
+                      <td>11-7-2014</td>
+                      <td>11-7-2014</td>
+                      <td><img src="../../../assets/img/avatar.png" width="45px" /></td>
+                      <td><a href="javascript:void(0);">Edit</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+        </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
   </section>
   <!-- /.content -->
 </div>

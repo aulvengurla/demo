@@ -5,3 +5,27 @@
     /* margin-left: 230px; */
     z-index: 820;
 }
+
+/* button {
+    border: 0;
+    background-color: #3498db;
+    color: white;  
+  }
+  
+  button:hover {
+    background-color: #29b989;
+  }
+
+  button:active, button:hover {
+    outline: none;
+  }
+   */
+  a {
+    color: #3498db;
+    transition: color 0.2s ease-out;
+    
+  }
+  
+  a:hover {
+    color: #2ecc71;
+  }

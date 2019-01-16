@@ -1,8 +1,8 @@
 <header class="main-header">
 
   <!-- Logo -->
-  <a href="#" class="logo" style="height: 65px;">  
-    <span class="logo-lg"><img src="../../../assets/img/logo3.png"     width="213px;"      height="65px;" ></span>
+  <a href="#" class="logo" style="height: 90px; padding-top: 5px;">  
+    <span class= "tcf-logo"><img src="../../../assets/img/logo1.png"     width="213px;"      height="65px;" ></span>
   </a>
 
   <!-- Header Navbar -->
@@ -15,11 +15,17 @@
         <!-- User Account Menu -->
         <li class="dropdown user user-menu">
           <!-- Menu Toggle Button -->
+          <h4 style="text-align: right; padding-right: 15px ; color:white;">
+            
+              {{ timeNow | async | date:'longDate' }}
+                 
+          
+          </h4>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <!-- The user image in the navbar-->
             <img src="assets/img/avatar5.png" class="user-image" alt="User Image">
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-xs">Welcome Atul K</span>
+            <span class="hidden-xs">Welcome User</span>
           </a> 
         </li>
         <!-- Control Sidebar Toggle Button -->
