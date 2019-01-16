@@ -1,12 +1,12 @@
 [
     {
         "msgID":1,
-        "msg":"Message-1",
+        "msg":"Message 1",
         "displayMsg": "N"
     },
     {
         "msgID":2,
-        "msg":"Message-2",
+        "msg":"Message 2",
         "displayMsg": "Y"
     },
     {

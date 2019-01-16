@@ -101,7 +101,8 @@ export class StarterContentComponent implements OnInit {
   updateMessage(data:any,i){ 
     this.errorMsg = '';
     let bkDataObj = JSON.parse(this.bkData); 
-    let updatedStr = data.msg.replace(/ /g, ""); 
+    let tmp = data.msg; 
+    let updatedStr = tmp.trim();
     $("#info_"+data.msgID).hide();
     $("#save_"+data.msgID).hide();
     $("#error_"+data.msgID).hide(); 

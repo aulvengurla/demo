@@ -13,8 +13,8 @@ export class MessageService {
 
    public getAllMessage(): Observable<any> {  
 
-     //let url = 'assets/mock-json/all-messages.json';
-     let url = 'http://wallboardservices.corp.tcf.biz/Wallboard/Message/All';
+     let url = 'assets/mock-json/all-messages.json';
+    // let url = 'http://wallboardservices.corp.tcf.biz/Wallboard/Message/All';
     
       return this.http.get(url)
           .map((response: Response) => {
