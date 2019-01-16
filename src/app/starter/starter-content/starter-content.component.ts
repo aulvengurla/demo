@@ -108,6 +108,7 @@ export class StarterContentComponent implements OnInit {
     $("#error_"+data.msgID).hide(); 
     if(bkDataObj[i].msg == updatedStr){   
      $("#info_"+data.msgID).show();
+     this.messageList[i].msg = updatedStr;
     }else{        
       this.messageService.updateMessage(data).subscribe((result) => {        
         console.log(result);
