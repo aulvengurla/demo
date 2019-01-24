@@ -47,21 +47,11 @@ export class StarterContentComponent implements OnInit {
     }
     
     //setting new message ID
-    this.newMsgID = Math.max.apply(Math,this.messageList.map(function(o) { return o.msgID; }));
-    //console.log(this.newMsgID)
-    this.newMsgID = this.newMsgID + 1
-    //console.log(this.newMsgID)
-    this.newMsgVal = msgfalg.value.inewmsg;
-
-    //console.log(this.newMsgVal)
-    //console.log(this.newMsgID)
-    //console.log(this.newMsgFlag)
-
+    this.newMsgID = Math.max.apply(Math,this.messageList.map(function(o) { return o.msgID; })); 
+    this.newMsgID = this.newMsgID + 1 
+    this.newMsgVal = msgfalg.value.inewmsg; 
     //setting new message data
-    const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal, displayMsg: this.newMsgFlag};
-  
-    //console.log(msgfalg);
-    //console.log(msgBody);
+    const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal, displayMsg: this.newMsgFlag}; 
     //sending to message.service for post
     this.messageService.addMessage(msgBody).subscribe((result) => {        
       console.log(result);
@@ -108,7 +98,7 @@ export class StarterContentComponent implements OnInit {
     $("#error_"+data.msgID).hide(); 
     if(bkDataObj[i].msg == updatedStr){   
      $("#info_"+data.msgID).show();
-     this.messageList[i].msg = updatedStr;
+     this.messageList[i].msg = updatedStr;  
     }else{        
       this.messageService.updateMessage(data).subscribe((result) => {        
         console.log(result);
@@ -126,7 +116,11 @@ export class StarterContentComponent implements OnInit {
       }
  
     } 
-
+      setTimeout(function(){ 
+        $("#info_"+data.msgID).hide();
+        $("#save_"+data.msgID).hide();
+        $("#error_"+data.msgID).hide(); 
+       }, 5000);
   }
  
   deleteMessage(data:any){

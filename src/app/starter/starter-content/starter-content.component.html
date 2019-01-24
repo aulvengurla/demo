@@ -99,6 +99,9 @@
                     
                     <tr *ngFor="let data Of messageList;let i = index;">
                       <td>
+                          <span style="color: yellow;" id="info_{{data.msgID}}" style="display:none;" >Massge must have at least one character</span>
+                          <span style="color: green;" id="save_{{data.msgID}}" style="display:none;">Successfully saved</span>
+                          <span style="color: red;" id="error_{{data.msgID}}" style="display:none;" >Save Unsuccessful</span>
                         <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" placeholder="Enter ..."
                           [(ngModel)]="data.msg" (click)="getOrignalVal(data.msg,data.msgID,i)" maxlength="70"
                           [readonly]="txtbtn">{{data.msg}} </textarea>
@@ -109,11 +112,7 @@
                       <td> <button *ngIf="showAddEdit == false" type="submit" class="btn btn-success" (click)="updateMessage(data,i)" >Save</button>
                         <button *ngIf="showAddEdit == false" type="submit" class="btn btn-danger" (click)="deleteMessage(data)">Delete</button>
                       </td>
-                      <td> 
-                        <span style="color: yellow;" id="info_{{data.msgID}}" style="display:none;" >Massge must have at least one character</span>
-                        <span style="color: green;" id="save_{{data.msgID}}" style="display:none;">Successfully saved</span>
-                        <span style="color: red;" id="error_{{data.msgID}}" style="display:none;" >Save Unsuccessful</span>
-                       </td>
+                  
                     </tr>
                   <!--
 
