@@ -85,6 +85,9 @@
                         <td>
                           <input class="form-control" name="inewmsg" type="text" [(ngModel)]="inputfield" placeholder="Enter Message"
                             maxlength="70" required>
+                            <span  id="save_msg" style="display:none;color: green;">Successfully saved</span>
+                            <span  id="error_msg" style="display:none;color: red;" >Save Unsuccessful</span>
+                            <span  id="info_msg" style="display:none;color: yellow;" >Massge must have at least one character</span>
                         </td>
                         <td><input type="checkbox" name="setnewmsg" [(ngModel)]="displayMsgFlag"></td>
                         <td> <button type="submit" class="btn btn-success" >Save</button>
@@ -99,9 +102,10 @@
                     
                     <tr *ngFor="let data Of messageList;let i = index;">
                       <td>
-                          <span style="color: yellow;" id="info_{{data.msgID}}" style="display:none;" >Massge must have at least one character</span>
-                          <span style="color: green;" id="save_{{data.msgID}}" style="display:none;">Successfully saved</span>
-                          <span style="color: red;" id="error_{{data.msgID}}" style="display:none;" >Save Unsuccessful</span>
+                          <span   id="info_{{data.msgID}}" style="display:none;color: yellow;" >Massge must have at least one character</span>
+                          <span  id="save_{{data.msgID}}" style="display:none;color: green;">Successfully saved</span>
+                          <span  id="error_{{data.msgID}}" style="display:none;color: red;" >Save Unsuccessful</span>
+                          
                         <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" placeholder="Enter ..."
                           [(ngModel)]="data.msg" (click)="getOrignalVal(data.msg,data.msgID,i)" maxlength="70"
                           [readonly]="txtbtn">{{data.msg}} </textarea>
@@ -113,25 +117,8 @@
                         <button *ngIf="showAddEdit == false" type="submit" class="btn btn-danger" (click)="deleteMessage(data)">Delete</button>
                       </td>
                   
-                    </tr>
-                  <!--
+                    </tr> 
 
-                  <tr *ngFor="let data Of messageList;let i = index;"> 
-                      <td>
-                          <textarea class="form-control" name="ipt" id="ipt_{{data.msgID}}" rows="2" placeholder="Enter ..." 
-                          [(ngModel)]="data.msg" maxlength="70"  (keyup)="lenghtValidate(data.msg)" >{{data.msg}}</textarea>                         
-                      </td>
-                      <td>  <label> <input type="checkbox" name="chk" id="chk_{{data.msgID}}" [checked]="getStatus(data)"   (click)="getStatusChk($event,data)"> </label></td> 
-                      <td>  <button  class="btn btn-success" (click)="updateMessage(data,i)"   >Save</button> | 
-                        <button  class="btn btn-danger"  data-toggle="modal"    (click)="persistMsgTmp(data)" >Delete</button> 
-                      </td>
-                      <td> 
-                        <span style="color: yellow;" id="info_{{data.msgID}}" style="display:none;" >Massge must have at least one character</span>
-                        <span style="color: green;" id="save_{{data.msgID}}" style="display:none;">Successfully saved</span>
-                        <span style="color: red;" id="error_{{data.msgID}}" style="display:none;" >Save Unsuccessful</span>
-                       </td>
-                    </tr>
-                  -->     
                   </tbody>
                 </table>
               </div>

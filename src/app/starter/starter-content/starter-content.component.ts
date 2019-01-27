@@ -38,7 +38,7 @@ export class StarterContentComponent implements OnInit {
       this.getAllMessage(); 
   }
 
-  addMessage(msgfalg: NgForm){
+  addMessage(msgfalg: NgForm){ 
     //setting new message to active
     if(this.displayMsgFlag == true){
       this.newMsgFlag = "Y";
@@ -51,14 +51,30 @@ export class StarterContentComponent implements OnInit {
     this.newMsgID = this.newMsgID + 1 
     this.newMsgVal = msgfalg.value.inewmsg; 
     //setting new message data
-    const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal, displayMsg: this.newMsgFlag}; 
-    //sending to message.service for post
-    this.messageService.addMessage(msgBody).subscribe((result) => {        
-      console.log(result);
-      this.getAllMessage();
-    }, err  => this.errorMsg = <any>err);   
-    console.log(this.messageList)
-    msgfalg.reset();
+    if(this.newMsgVal.trim() !=""){
+      const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal, displayMsg: this.newMsgFlag}; 
+      //sending to message.service for post
+      this.messageService.addMessage(msgBody).subscribe((result) => {     
+        $("#save_msg").show();
+        $("#error_msg").hide();  
+        this.getAllMessage();
+      }, err  => this.errorMsg = <any>err);  
+
+      if(this.errorMsg !=""){
+        $("#save_msg").hide();
+        $("#error_msg").show(); 
+      }
+    }else{
+      $("#save_msg").hide();
+      $("#error_msg").hide(); 
+      $("#info_msg").show(); 
+    } 
+    msgfalg.reset();  
+    setTimeout(function(){  
+      $("#save_msg").hide();
+      $("#error_msg").hide(); 
+      $("#info_msg").hide(); 
+    }, 5000); 
   }
 
   getOrignalVal(data:any,id,i){ 

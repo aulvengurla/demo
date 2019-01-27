@@ -25,7 +25,7 @@ export class MessageService {
    }
 
    public addMessage(data:any): Observable<any> {
-
+console.log(data);
     let url = '';
        return this.http.post(url,data)
          .map((response: Response) => {
