@@ -33,48 +33,60 @@ export class StarterContentComponent implements OnInit {
 
   display='none';	
   bkData:string;
+  inputfield:any;
  
   ngOnInit() { 
       this.getAllMessage(); 
   }
 
   addMessage(msgfalg: NgForm){ 
-    //setting new message to active
-    if(this.displayMsgFlag == true){
-      this.newMsgFlag = "Y";
+
+    if(this.inputfield != undefined){ 
+            //setting new message to active
+              if(this.displayMsgFlag == true){
+                this.newMsgFlag = "Y";
+              }else{
+                this.newMsgFlag = "N";
+              }
+              
+              //setting new message ID
+              this.newMsgID = Math.max.apply(Math,this.messageList.map(function(o) { return o.msgID; })); 
+              this.newMsgID = this.newMsgID + 1 
+              this.newMsgVal = msgfalg.value.inewmsg; 
+              //setting new message data
+              if(this.newMsgVal.trim() !=""){
+                const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal, displayMsg: this.newMsgFlag}; 
+                //sending to message.service for post
+                this.messageService.addMessage(msgBody).subscribe((result) => {     
+                  $("#save_msg").show();
+                  $("#error_msg").hide();  
+                  this.getAllMessage();
+                }, err  => this.errorMsg = <any>err);  
+
+                if(this.errorMsg !=""){
+                  $("#save_msg").hide();
+                  $("#error_msg").show(); 
+                }
+              }else{
+                $("#save_msg").hide();
+                $("#error_msg").hide(); 
+                $("#info_msg").show(); 
+              } 
+              msgfalg.reset();  
+              setTimeout(function(){  
+                $("#save_msg").hide();
+                $("#error_msg").hide(); 
+                $("#info_msg").hide(); 
+              }, 5000); 
     }else{
-      this.newMsgFlag = "N";
+      $("#info_msg").show(); 
+            setTimeout(function(){  
+              $("#save_msg").hide();
+              $("#error_msg").hide(); 
+              $("#info_msg").hide(); 
+            }, 5000); 
     }
     
-    //setting new message ID
-    this.newMsgID = Math.max.apply(Math,this.messageList.map(function(o) { return o.msgID; })); 
-    this.newMsgID = this.newMsgID + 1 
-    this.newMsgVal = msgfalg.value.inewmsg; 
-    //setting new message data
-    if(this.newMsgVal.trim() !=""){
-      const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal, displayMsg: this.newMsgFlag}; 
-      //sending to message.service for post
-      this.messageService.addMessage(msgBody).subscribe((result) => {     
-        $("#save_msg").show();
-        $("#error_msg").hide();  
-        this.getAllMessage();
-      }, err  => this.errorMsg = <any>err);  
-
-      if(this.errorMsg !=""){
-        $("#save_msg").hide();
-        $("#error_msg").show(); 
-      }
-    }else{
-      $("#save_msg").hide();
-      $("#error_msg").hide(); 
-      $("#info_msg").show(); 
-    } 
-    msgfalg.reset();  
-    setTimeout(function(){  
-      $("#save_msg").hide();
-      $("#error_msg").hide(); 
-      $("#info_msg").hide(); 
-    }, 5000); 
   }
 
   getOrignalVal(data:any,id,i){ 
