@@ -42,7 +42,12 @@ export class StarterContentComponent implements OnInit {
   addMessage(msgfalg: NgForm){ 
 
     if(this.inputfield != undefined){ 
-            //setting new message to active
+            
+              this.newMsgVal = msgfalg.value.inewmsg; 
+              //setting new message data
+              if(this.newMsgVal.trim() !=""){
+
+                //setting new message to active
               if(this.displayMsgFlag == true){
                 this.newMsgFlag = "Y";
               }else{
@@ -52,41 +57,50 @@ export class StarterContentComponent implements OnInit {
               //setting new message ID
               this.newMsgID = Math.max.apply(Math,this.messageList.map(function(o) { return o.msgID; })); 
               this.newMsgID = this.newMsgID + 1 
-              this.newMsgVal = msgfalg.value.inewmsg; 
-              //setting new message data
-              if(this.newMsgVal.trim() !=""){
+
                 const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal, displayMsg: this.newMsgFlag}; 
                 //sending to message.service for post
                 this.messageService.addMessage(msgBody).subscribe((result) => {     
                   $("#save_msg").show();
                   $("#error_msg").hide();  
-                  this.getAllMessage();
+                  
+                  setTimeout(function(this){  
+                    $("#save_msg").hide();
+                    $("#error_msg").hide(); 
+                    $("#info_msg").hide();
+                    this.getAllMessage();  
+                  }, 5000); 
+
                 }, err  => this.errorMsg = <any>err);  
 
                 if(this.errorMsg !=""){
                   $("#save_msg").hide();
-                  $("#error_msg").show(); 
+                  $("#error_msg").show();  
+                  this.hideAllMsg();
                 }
+                
               }else{
                 $("#save_msg").hide();
                 $("#error_msg").hide(); 
                 $("#info_msg").show(); 
               } 
+
               msgfalg.reset();  
-              setTimeout(function(){  
-                $("#save_msg").hide();
-                $("#error_msg").hide(); 
-                $("#info_msg").hide(); 
-              }, 5000); 
+              this.hideAllMsg(); 
     }else{
       $("#info_msg").show(); 
-            setTimeout(function(){  
-              $("#save_msg").hide();
-              $("#error_msg").hide(); 
-              $("#info_msg").hide(); 
-            }, 5000); 
+      this.hideAllMsg();           
     }
-    
+    this.errorMsg = "";
+  }
+
+
+  hideAllMsg(){
+    setTimeout(function(){  
+      $("#save_msg").hide();
+      $("#error_msg").hide(); 
+      $("#info_msg").hide();  
+    }, 5000); 
   }
 
   getOrignalVal(data:any,id,i){ 
@@ -130,10 +144,19 @@ export class StarterContentComponent implements OnInit {
     }else{        
       this.messageService.updateMessage(data).subscribe((result) => {        
         console.log(result);
-        this.getAllMessage();
+       
         $("#info_"+data.msgID).hide();
         $("#save_"+data.msgID).show();
         $("#error_"+data.msgID).hide();
+
+
+        setTimeout(function(this){ 
+          $("#info_"+data.msgID).hide();
+          $("#save_"+data.msgID).hide();
+          $("#error_"+data.msgID).hide(); 
+          this.getAllMessage();
+         }, 5000);
+
 
       }, err  => this.errorMsg = <any>err); 
  
