@@ -143,11 +143,24 @@ export class StarterContentComponent implements OnInit {
     $("#info_"+data.msgID).hide();
     $("#save_"+data.msgID).hide();
     $("#error_"+data.msgID).hide(); 
-    if(bkDataObj[i].msg == updatedStr && data.displayMsg == bkDataObj[i].displayMsg ){
+
+    let flag = true;
+
+ 
+    if(updatedStr =="" || updatedStr == undefined){ 
+      flag = false;
+      $("#info_"+data.msgID).val("Massge must have at least one character");
+      $("#info_"+data.msgID).show();
+     // this.messageList[i].msg = bkDataObj[i].msg;
+    }
+    if(bkDataObj[i].msg == updatedStr && data.displayMsg == bkDataObj[i].displayMsg ){ 
+      flag = false;
       $("#info_"+data.msgID).val("Massge must have at least one character");
       $("#info_"+data.msgID).show();
      this.messageList[i].msg = updatedStr;  
-    }else{         
+    }
+    
+    if(flag){         
 
       const msgBody = {msgID: data.msgID, msg: data.msg.trim(), displayMsg: data.displayMsg}; 
       console.log(msgBody);
