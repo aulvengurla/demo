@@ -58,7 +58,7 @@ export class StarterContentComponent implements OnInit {
               this.newMsgID = Math.max.apply(Math,this.messageList.map(function(o) { return o.msgID; })); 
               this.newMsgID = this.newMsgID + 1 
 
-                const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal, displayMsg: this.newMsgFlag}; 
+                const msgBody = {msgID: this.newMsgID, msg: this.newMsgVal.trim(), displayMsg: this.newMsgFlag}; 
                 //sending to message.service for post
                 this.messageService.addMessage(msgBody).subscribe((result) => {     
                   $("#save_msg").show();
@@ -132,19 +132,27 @@ export class StarterContentComponent implements OnInit {
   
   updateMessage(data:any,i){ 
     this.errorMsg = '';
-    let bkDataObj = JSON.parse(this.bkData); 
+    let bkDataObj = JSON.parse(this.bkData);
+    
+    console.log(data);
+    console.log(bkDataObj);
+ 
+
     let tmp = data.msg; 
     let updatedStr = tmp.trim();
     $("#info_"+data.msgID).hide();
     $("#save_"+data.msgID).hide();
     $("#error_"+data.msgID).hide(); 
-    if(bkDataObj[i].msg == updatedStr){   
-     $("#info_"+data.msgID).show();
+    if(bkDataObj[i].msg == updatedStr && data.displayMsg == bkDataObj[i].displayMsg ){
+      $("#info_"+data.msgID).val("Massge must have at least one character");
+      $("#info_"+data.msgID).show();
      this.messageList[i].msg = updatedStr;  
-    }else{        
-      this.messageService.updateMessage(data).subscribe((result) => {        
-        console.log(result);
-       
+    }else{         
+
+      const msgBody = {msgID: data.msgID, msg: data.msg.trim(), displayMsg: data.displayMsg}; 
+      console.log(msgBody);
+
+        this.messageService.updateMessage(msgBody).subscribe((result) => {                 
         $("#info_"+data.msgID).hide();
         $("#save_"+data.msgID).show();
         $("#error_"+data.msgID).hide();
