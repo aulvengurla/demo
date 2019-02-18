@@ -1,2 +1,5 @@
 <router-outlet></router-outlet>
+ 
 
+<h2 *ngIf="successMsg">Welcome {{successMsg?.username}}</h2> 
+<h2 *ngIf="errorMsg">OOps Error</h2>
