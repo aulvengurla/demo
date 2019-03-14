@@ -11,28 +11,32 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'app';
   errorMsg:string;
-  successMsg:string;
-  errorMsgx:string;
-  constructor(private authService:AuthService, private router: Router) { }
+  successMsg:string; 
+  constructor(private authService:AuthService, private router: Router) {  this.checkAuth();  }
 
   ngOnInit() { 
-    this.checkAuth(); 
+    
   }
 
   checkAuth():void{
    
            this.authService.checkAuth().subscribe( 
             result => {
+              console.log(result);
+              result = null; 
               // Handle result
-              this.router.navigate(['/starter']); 
+              if(result !=null && result.status == "success"){
+                this.router.navigate(['/starter']); 
+                localStorage.setItem("userDetails", JSON.stringify(result)); 
+              } else{
+                this.errorMsg = "Somthing went wrong...";
+              }
 
-              localStorage.setItem("userDetails", JSON.stringify(result));
-
-
+              
             },
-            error => {
-              console.log(error)
+            error => { 
               this.errorMsg = error;
+              this.errorMsg = "Somthing went wrong...";
             },
           );
       

@@ -13,9 +13,7 @@ export class AuthService {
 
    public checkAuth(): Observable<any> {  
 
-     let url = 'assets/mock-json/authx.json';
-    
-    
+     let url = 'assets/mock-json/auth.json'; 
       return this.http.get(url)
           .map((response: Response) => {
                   return response.json();

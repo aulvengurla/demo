@@ -1,5 +1,5 @@
-<router-outlet></router-outlet>
- 
+<router-outlet></router-outlet> 
+<div *ngIf="errorMsg" class="alert alert-danger alert-dismissible"> 
+    <h2 >OOps Error..Somethingwen wrong..!!</h2>
+</div>
 
-<h2 *ngIf="successMsg">Welcome {{successMsg?.username}}</h2> 
-<h2 *ngIf="errorMsg">OOps Error</h2>
