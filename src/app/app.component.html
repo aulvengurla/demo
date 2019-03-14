@@ -1,5 +1,14 @@
-<router-outlet></router-outlet> 
-<div *ngIf="errorMsg" class="alert alert-danger alert-dismissible"> 
-    <h2 >OOps Error..Somethingwen wrong..!!</h2>
-</div>
+
+ 
+
+<div *ngIf="errorMsg" class="callout callout-danger">
+    <h4>Warning!</h4>
+
+    <p>OOps Error..Something went wrong..!!</p>
+  </div>
+
+<span *ngIf="!errorMsg">
+    <router-outlet></router-outlet> 
+</span>
+
 

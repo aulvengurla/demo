@@ -29,14 +29,14 @@ export class AppComponent implements OnInit {
                 this.router.navigate(['/starter']); 
                 localStorage.setItem("userDetails", JSON.stringify(result)); 
               } else{
-                this.errorMsg = "Somthing went wrong...";
+                this.errorMsg = "OOps Error..Something went wrong..!!";
               }
 
               
             },
             error => { 
               this.errorMsg = error;
-              this.errorMsg = "Somthing went wrong...";
+              this.errorMsg = "OOps Error..Something went wrong..!!";
             },
           );
       
