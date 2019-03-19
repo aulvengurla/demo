@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { StarterComponent } from './starter/starter.component';
 import { StarterHeaderComponent } from './starter/starter-header/starter-header.component';
 import { StarterContentComponent } from './starter/starter-content/starter-content.component';
+import { StarterLogoutComponent } from './starter/starter-logout/starter-logout.component';
+import { LogoutComponent } from './logout/logout.component'; 
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { StarterContentComponent } from './starter/starter-content/starter-conte
     StarterComponent,
     StarterHeaderComponent,
     StarterContentComponent,
+    StarterLogoutComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

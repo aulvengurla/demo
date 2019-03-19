@@ -20,7 +20,21 @@ export class AuthService {
               }
           ).catch((e: any) => Observable.throw(this.errorHandler(e)));
 
-   }   
+   }  
+   
+   
+
+   public logout(): Observable<any> {  
+
+    let url = 'assets/mock-json/logout.json'; 
+     return this.http.get(url)
+         .map((response: Response) => {
+                 return response.json();
+             }
+         ).catch((e: any) => Observable.throw(this.errorHandler(e)));
+
+  } 
+
 
    errorHandler(error: any): void {
       console.log(error);

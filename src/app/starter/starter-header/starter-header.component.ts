@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-starter-header',
@@ -10,8 +12,9 @@ export class StarterHeaderComponent implements OnInit {
 
   timeNow: any;
   loggedInUserDetails:any;
+  errorMsg:String;
 
-  constructor() { }
+  constructor(private authService:AuthService,private router: Router) { }
 
   ngOnInit() { 
     var userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -19,6 +22,16 @@ export class StarterHeaderComponent implements OnInit {
       this.loggedInUserDetails = userDetails;
     }
     this.timeNow = Observable.interval(1000).map(x => new Date()).share();
+  }
+
+  logout():void{   
+           this.authService.logout().subscribe((result) => {  
+            console.log(result);
+            if(result.status == "success"){
+              localStorage.removeItem("userDetails");
+              this.router.navigate(['/logout']); 
+            }
+          }, err  => this.errorMsg = <any>err); 
   }
 
 }

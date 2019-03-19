@@ -12,18 +12,23 @@ export class AppComponent implements OnInit {
   title = 'app';
   errorMsg:string;
   successMsg:string; 
-  constructor(private authService:AuthService, private router: Router) {  this.checkAuth();  }
+  constructor(private authService:AuthService, private router: Router) {   }
 
-  ngOnInit() { 
+  ngOnInit() {   
+    if(localStorage.length > 0){
+      this.checkAuth(); 
+    }else{
+      this.router.navigate(['/logout']); 
+    }
     
   }
 
   checkAuth():void{
-   
+  
            this.authService.checkAuth().subscribe( 
             result => {
               console.log(result);
-              result = null; 
+            //  result = null; 
               // Handle result
               if(result !=null && result.status == "success"){
                 this.router.navigate(['/starter']); 
