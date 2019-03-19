@@ -31,8 +31,8 @@ export class AppComponent implements OnInit {
             //  result = null; 
               // Handle result
               if(result !=null && result.status == "success"){
-                this.router.navigate(['/starter']); 
                 localStorage.setItem("userDetails", JSON.stringify(result)); 
+                this.router.navigate(['/starter']);  
               } else{
                 this.errorMsg = "OOps Error..Something went wrong..!!";
               }
