@@ -10,6 +10,10 @@ export class LogoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(localStorage.getItem("userDetails") !=null){
+      localStorage.removeItem("userDetails");
+    }
+    
   }
 
 }
