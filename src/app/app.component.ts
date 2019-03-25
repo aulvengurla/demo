@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'app';
   errorMsg:string;
-  successMsg:string; 
+  successMsg:string;  
   constructor(private authService:AuthService, private router: Router) {   }
 
-  ngOnInit() {   
-    if(localStorage.length > 0){
+  ngOnInit() {     
+    if(localStorage.getItem("userDetails") ==null){       
       this.checkAuth(); 
-    }else{
+    }else{ 
       this.router.navigate(['/logout']); 
     }
     

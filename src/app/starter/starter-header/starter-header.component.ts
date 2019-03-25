@@ -29,7 +29,7 @@ export class StarterHeaderComponent implements OnInit {
             console.log(result);
             if(result.status == "success"){
               localStorage.removeItem("userDetails");
-              this.router.navigate(['/logout']); 
+              this.router.navigate(['logout']); 
             }
           }, err  => this.errorMsg = <any>err); 
   }
